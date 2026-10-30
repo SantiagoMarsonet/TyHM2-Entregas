@@ -1,0 +1,19 @@
+id,nombre,origen,dist_media_pond_km,dist_cg_km,pob_15km,vecinos_delaunay,dist_media_vecinos_km,area_km2,pob_cercana,ranking
+8,Zona Industrial Carril Rodriguez Peña,CSV cátedra,13.4,3.3,1273144,4,9.2,190.0,644285,1
+10,Zona Alcoholera,CSV cátedra,14.1,1.9,1273144,4,5.3,40.0,219402,2
+9,Parque Industrial General Ortega,CSV cátedra,15.8,2.9,863687,5,8.1,78.0,0,3
+11,Zona Industrial Carril Gomez,CSV cátedra,15.8,2.9,863687,5,9.0,68.0,0,3
+7,Area Lateral Este Acceso Sur (Ruta 40),CSV cátedra,17.8,12.4,716777,7,17.1,423.0,175056,5
+12,Zona Industrial Fray Luis Beltrán,CSV cátedra,20.9,11.7,219402,7,15.7,262.0,0,6
+3,Parque Industrial Minero Eje Norte,CSV cátedra,21.1,18.5,683527,8,20.3,317.0,234401,7
+2,Parque Industrial Minero Eje Norte II,CSV cátedra,22.0,19.5,683527,3,10.9,92.0,0,8
+13,Zona Industrial San Roque,CSV cátedra,25.5,19.1,186396,3,5.2,45.0,0,9
+14,Parque Industria y Servicios de Palmira,CSV cátedra,27.0,21.3,186396,5,14.3,323.0,0,10
+1,Zona Industrial Cementera,CSV cátedra,27.1,25.1,234401,4,20.3,594.0,0,11
+15,Parque Industrial Barriales,CSV cátedra,27.3,21.9,186396,8,17.4,588.0,0,12
+6,Parque Industrial Municipal Lujan,CSV cátedra,31.1,28.0,175056,5,39.2,861.0,0,13
+5,Parque Industrial Provincial,CSV cátedra,31.4,28.6,175056,4,25.0,253.0,0,14
+16,Zona Industrial San Martín,CSV cátedra,37.2,35.2,250120,5,24.6,1142.0,139792,15
+4,Zona Industrial de Lavalle,CSV cátedra,38.2,35.1,47167,7,41.0,1386.0,47167,16
+17,Zona Industrial Rivadavia,CSV cátedra,40.0,38.5,250120,4,27.9,839.0,110328,17
+18,Parque Industrial Santa Rosa,Digitalizado sobre parques_3.tif,74.6,74.2,19382,4,61.4,727.0,19382,18

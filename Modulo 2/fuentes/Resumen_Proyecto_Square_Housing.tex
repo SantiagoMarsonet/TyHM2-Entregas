@@ -1,0 +1,184 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.35em}
+\setlist{itemsep=0.15em, topsep=0.3em}
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.8em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.7em}{0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Square Housing -- Grupo 11}
+\fancyhead[R]{\small T\'ecnicas y Herramientas Modernas II -- M\'odulo 2}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+
+\newcommand{\sub}[1]{\vspace{0.2em}\noindent\textit{#1}\par}
+\newcommand{\pend}{\textcolor{gray}{\textit{(a definir en la etapa correspondiente del PFE)}}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE SQUARE HOUSING}\\[0.4em]
+{\large Planta de Fabricación de Viviendas Modulares Industrializadas en Mendoza}\\[0.8em]
+{\small Proyecto Final de Estudios -- Ingeniería Industrial -- Universidad Nacional de Cuyo}\\[0.2em]
+{\small Grupo 11: Marsonet, Santiago (14131) $\cdot$ Royo, Santiago (14141) $\cdot$ Gimenez, Lisandro (14122) $\cdot$ Bordon, Joaquín (14104)}\\[0.2em]
+{\small Segundo semestre 2026}
+\end{center}
+
+\vspace{0.6em}
+\section*{Resumen Ejecutivo}
+
+\textbf{SQUARE HOUSING} es un emprendimiento que propone instalar en Mendoza una planta de fabricación de viviendas modulares industrializadas, construidas en seco y ampliables por módulos. El proyecto responde a un problema concreto: los jóvenes adultos de 25 a 40 años no logran acceder a su primera vivienda por la alta inversión inicial, la falta de financiamiento y la imprevisibilidad de la construcción tradicional, que en vivienda unifamiliar demanda entre 18 y 30 meses, con presupuestos abiertos y sobrecostos.
+
+La propuesta es una vivienda básica (cocina-estar, dormitorio y baño) fabricada en ambiente controlado, con precio cerrado desde el contrato y un \textbf{sistema de ampliaciones y \textit{upgrades} habitacionales} que permite que la casa crezca junto con la familia. El trabajo se plantea como un estudio de prefactibilidad en tres etapas: comercialización (ya desarrollada), ingeniería y económico-financiera.
+
+\section{Estudio de Mercado}
+\textit{Demuestra la existencia de una demanda insatisfecha y un espacio competitivo para el producto.}
+
+\subsection{Definición del producto}
+\begin{itemize}
+  \item \textbf{Producto base:} vivienda modular con cocina-estar, dormitorio y baño. Si se aprueba el Código Unificado de Edificación de Mendoza, el módulo inicial deberá tener al menos 32\,m$^2$.
+  \item \textbf{Ampliaciones:} módulos adicionales que se incorporan a medida que cambian las necesidades del hogar.
+  \item \textbf{Upgrades habitacionales:} eficiencia térmica, climatización eficiente, preparación para paneles solares, domótica, seguridad y espacio de home office, entre otros.
+\end{itemize}
+
+\subsection{Análisis de la demanda}
+\begin{itemize}
+  \item \textbf{Necesidad detectada:} según fuentes periodísticas relevadas, más de 100.000 personas enfrentan déficit habitacional en Mendoza. En la encuesta propia, el 100\,\% de los encuestados de 25 a 40 años sin vivienda elegiría comprar o construir, pero no puede por el precio, la falta de financiamiento y la inestabilidad económica.
+  \item \textbf{Contexto macroeconómico (INDEC/BCRA):} la inflación anual bajó de 117,8\,\% (2024) a 31,5\,\% (2025); el crédito al sector privado creció cerca de 100\,\% entre 2023 y 2025, y en 2025 se sumaron unos 43.700 nuevos deudores hipotecarios.
+  \item \textbf{Perfiles de cliente:} (1) personas de 30 a 40 años de ingresos medios o altos que alquilan, sin hijos o con hijos pequeños; (2) adultos que ya construyeron y no quieren repetir la experiencia de obra; (3) personas de 30 a 40 años sin capital propio, que dependen del crédito personal o hipotecario.
+  \item \textbf{Segmentos secundarios:} turismo y alquiler temporario, inversores y, como alternativa, módulos para el sector minero.
+\end{itemize}
+
+\subsection{Análisis de la oferta}
+\begin{itemize}
+  \item \textbf{Competidores locales y regionales:} IMESCO (San Rafael), Viviendas Guaymallén, Ecolodge, Factory Xpace, Idero, Husly, Estilo Modular y Grupo Patagonia. Ofrecen viviendas terminadas y estáticas o apuntan al turismo de alta gama.
+  \item \textbf{Referentes:} Lucy's House (Córdoba) y las empresas afiliadas a la Cámara Argentina de la Construcción Modular e Industrializada (CACMI).
+  \item \textbf{Sustitutos:} construcción tradicional en mampostería y módulos importados de China, de bajo precio.
+  \item \textbf{Espacio identificado:} no se relevó una oferta orientada a la vivienda familiar de clase media con un esquema flexible y ampliable.
+\end{itemize}
+
+\subsection{Estrategia de comercialización}
+\begin{itemize}
+  \item Venta directa con precio cerrado y plazo de entrega definido desde el contrato.
+  \item Ingresos posteriores a la venta mediante ampliaciones y upgrades.
+  \item Casas de exhibición que pueden destinarse a alquiler temporario para recuperar la inversión.
+\end{itemize}
+
+\section{Tamaño y Localización}
+\textit{Define la capacidad de la planta y su emplazamiento.}
+
+\begin{itemize}
+  \item \textbf{Macrolocalización:} Provincia de Mendoza, Argentina (zona sísmica 4).
+  \item \textbf{Microlocalización:} \pend. Los factores a considerar son la cercanía a los centros de demanda del Gran Mendoza, el acceso a rutas para el transporte de módulos, la disponibilidad de proveedores de acero y la zonificación industrial.
+  \item \textbf{Restricciones de transporte:} 2,60\,m de ancho y 4,30\,m de alto como máximo sin permiso especial. Estas medidas condicionan la geometría del módulo si se entrega armado.
+  \item \textbf{Tamaño:} la capacidad de la planta surgirá de la proyección de demanda, que se está rehaciendo mediante encuestas y entrevistas individuales por perfil de cliente \pend.
+\end{itemize}
+
+\section{Ingeniería del Proyecto}
+\textit{Describe el sistema constructivo, el proceso productivo y el aseguramiento de la calidad.}
+
+\subsection{Sistema constructivo}
+El grupo se orienta al \textbf{steel frame} y evalúa un sistema híbrido de steel frame con paneles SIP. El steel frame está reconocido como ``sistema tradicional'' por la Resolución 5-E/2018. Por lo tanto, no requiere Certificado de Aptitud Técnica (CAT) si se calcula según los reglamentos CIRSOC 303 e INPRES-CIRSOC 103. La elección final se realiza mediante una matriz de decisión ponderada.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{lX}
+\toprule
+\textbf{Sistema descartado} & \textbf{Motivo} \\
+\midrule
+UMA (CEVE-CONICET) & Desactualizado, poca trazabilidad, sin datos de costo. \\
+Sistema no tradicional propio & Exigiría CAT y CAS, inviable en los plazos del PFE. \\
+Panel sándwich importado y contenedor & Peores puntajes en la matriz de decisión. \\
+Paneles de hormigón con EPS & Demasiado pesados para transportar la casa armada. \\
+Wood frame & Buen puntaje, pero percepción negativa en Mendoza y cadena de proveedores débil. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Esquema de entrega}
+El modelo ideal es la vivienda \textbf{volumétrica}, armada en planta. Luego de la reunión con la Municipalidad de Guaymallén se evalúan también la entrega desarmada y un \textbf{esquema híbrido}: núcleo húmedo (cocina y baño) armado en planta y paneles montados en el lote.
+
+\subsection{Flujo del proceso productivo propuesto}
+\begin{enumerate}
+  \item \textbf{Diseño y documentación:} modelado BIM del módulo y de sus variantes.
+  \item \textbf{Recepción de materiales:} perfiles de acero galvanizado, placas, aislantes e insumos de instalaciones.
+  \item \textbf{Fabricación de la estructura:} armado de paneles y bastidores en steel frame.
+  \item \textbf{Cerramientos e instalaciones:} aislación, instalaciones sanitarias y eléctricas, aberturas.
+  \item \textbf{Terminaciones e inspección en planta:} control de calidad por etapa.
+  \item \textbf{Transporte y montaje:} traslado al lote, fundación y conexión a servicios.
+\end{enumerate}
+
+\subsection{Aseguramiento de la calidad}
+Se propone un \textbf{protocolo de fabricación e inspección en planta}, inspirado en esquemas de Estados Unidos y Chile, que permita al municipio verificar la obra durante la fabricación y facilite su aprobación.
+
+\section{Inversiones y Financiamiento}
+\textit{Estructura de activos y fuentes de financiamiento.}
+
+\begin{itemize}
+  \item \textbf{Inversión fija tangible:} terreno y nave industrial, equipamiento de corte y conformado de perfiles, mesas de armado, herramental, equipos de izaje y medios de transporte \pend.
+  \item \textbf{Inversión intangible:} desarrollo del diseño y la documentación técnica, cálculo estructural, habilitaciones y protocolo de calidad \pend.
+  \item \textbf{Capital de trabajo:} stock de acero e insumos, sensible a variaciones de precio \pend.
+  \item \textbf{Financiamiento del cliente:} es un punto crítico. Las líneas actuales para viviendas modulares son préstamos personales, más cortos y caros. El crédito hipotecario de construcción del Banco Nación exige terreno propio y desembolsa por avance de obra en el lote, lo que choca con la fabricación en planta.
+\end{itemize}
+
+\section{Presupuesto de Ingresos y Egresos}
+\textit{Esquema económico del modelo de negocio.}
+
+\begin{itemize}
+  \item \textbf{Ingresos:} venta de la vivienda base, venta de ampliaciones y upgrades, y alquiler temporario de las casas de exhibición.
+  \item \textbf{Costos variables:} acero e insumos. Una variación del 15 al 20\,\% en su precio impacta directamente en el margen.
+  \item \textbf{Costos fijos:} estructura de planta y mano de obra calificada en construcción en seco, limitada y más cara en Mendoza.
+  \item \textbf{Valores:} \pend.
+\end{itemize}
+
+\section{Evaluación del Proyecto}
+\textit{Impacto de la implementación en distintas dimensiones.}
+
+\begin{itemize}
+  \item \textbf{Económica:} VAN, TIR, período de recupero, punto de equilibrio y análisis de sensibilidad \pend. Se espera una rotación de capital más rápida que en la obra tradicional.
+  \item \textbf{Social:} acceso a la vivienda para jóvenes adultos que postergan la compra por incertidumbre o falta de capital, con menor inversión inicial y precio cerrado.
+  \item \textbf{Ambiental:} menos residuos de obra, materiales reciclables, menor demanda energética por mejor aislación y posibilidad de reutilizar la estructura.
+  \item \textbf{Cultural:} cuestiona el modelo de la casa de ladrillo ``para toda la vida'' y propone un hogar flexible y ampliable.
+\end{itemize}
+
+\section{Organización y Marco Legal}
+\textit{Esquema institucional y normativa aplicable.}
+
+\subsection{Identidad del emprendimiento}
+\begin{itemize}
+  \item \textbf{Propósito:} otorgar un hogar a las personas.
+  \item \textbf{Visión:} ser el principal fabricante de viviendas modulares de la provincia, facilitando el acceso a viviendas económicas, de calidad y ampliables.
+  \item \textbf{Valores:} dedicación, innovación, sostenibilidad, emprendedurismo, compromiso social y resiliencia.
+  \item \textbf{Estructura organizativa:} \pend.
+\end{itemize}
+
+\subsection{Marco normativo}
+\begin{itemize}
+  \item \textbf{Nacional:} Resolución 5-E/2018 (steel frame como sistema tradicional); reglamentos CIRSOC 303 (estructuras livianas de acero) e INPRES-CIRSOC 103 (construcciones sismorresistentes).
+  \item \textbf{Provincial:} Ley 5547, que prohíbe promocionar viviendas prefabricadas sin aprobación municipal previa; Código Unificado de Edificación, enviado a la Legislatura en mayo de 2026.
+  \item \textbf{Municipal:} códigos de edificación de cada departamento. El de Guaymallén no prevé sistemas prefabricados.
+  \item \textbf{Privado:} reglamentos de barrios cerrados que prohíben las ``casas industrializadas''.
+\end{itemize}
+
+\subsection{Principales riesgos}
+Aprobación municipal de módulos armados en planta; acceso del cliente al crédito hipotecario; resistencia cultural a la construcción en seco; costos fijos elevados y sensibilidad al precio del acero; riesgo logístico de transporte y montaje; competencia de módulos importados; y datos de demanda todavía en revisión.
+
+\vspace{1.5em}
+\noindent\rule{\linewidth}{0.3pt}
+{\footnotesize\textbf{Nota sobre el uso de IA.} Este resumen fue redactado con asistencia de inteligencia artificial (Claude, de Anthropic) a partir de la documentación de trabajo del grupo: ficha inicial, análisis PESTEL, Canvas, encuestas, entrevistas y relevamiento normativo. La IA se usó para ordenar la información según la estructura de un estudio de prefactibilidad y redactar el texto. Los datos fueron verificados por el grupo, y los puntos aún no desarrollados se señalan como pendientes en lugar de completarse con valores supuestos.}
+
+\end{document}

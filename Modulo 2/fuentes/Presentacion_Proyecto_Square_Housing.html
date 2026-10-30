@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<style>
+@page { size: 1280px 720px; margin: 0; }
+:root{ --ink:#14233a; --mut:#5b6677; --acc:#d9682b; --bg:#f5f2ec; --card:#ffffff; --line:#e2ddd3; --soft:#fbe9dd; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Inter",sans-serif;color:var(--ink);background:#ddd}
+.s{width:1280px;height:720px;background:var(--bg);position:relative;overflow:hidden;page-break-after:always;padding:64px 80px}
+.tag{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);margin-bottom:14px}
+h1{font-family:"Inter Display","Inter";font-weight:800;font-size:44px;line-height:1.1;letter-spacing:-.01em;margin-bottom:14px}
+h2{font-size:20px;font-weight:700;margin-bottom:6px}
+p,li{font-size:17px;line-height:1.5;color:var(--mut)}
+.lead{font-size:19px;max-width:900px;margin-bottom:30px}
+.foot{position:absolute;left:80px;right:80px;bottom:28px;display:flex;justify-content:space-between;font-size:12px;color:#9a9fa8;border-top:1px solid var(--line);padding-top:10px}
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+.card.acc{border-top:4px solid var(--acc)}
+.num{font-family:"Inter Display";font-weight:800;font-size:52px;color:var(--ink);letter-spacing:-.02em;line-height:1}
+.num small{font-size:24px;color:var(--acc);font-weight:700}
+.k{font-size:14px;font-weight:600;color:var(--ink);margin:10px 0 4px}
+.src{font-size:12px;color:#9a9fa8;margin-top:6px}
+ul{padding-left:20px} li{margin:4px 0}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--soft);color:#a8471a;margin-bottom:10px}
+.pill.ok{background:#e2f0e5;color:#2e6b3d}.pill.go{background:#fff2c9;color:#8a6500}.pill.no{background:#ece9e4;color:#6b6b6b}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);padding:10px 12px;border-bottom:2px solid var(--ink)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
+td.m{color:var(--mut)}
+/* portada */
+.cover{background:var(--ink);color:#fff;padding:0}
+.cover .l{position:absolute;left:80px;top:150px;width:640px}
+.cover h1{color:#fff;font-size:76px;margin:6px 0 20px}
+.cover p{color:#c8d0dc;font-size:21px}
+.cover .meta{position:absolute;left:80px;bottom:60px;font-size:15px;color:#aab4c3;line-height:1.7}
+.cover .meta b{color:#fff}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow .st{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 16px;position:relative}
+.flow .ar{width:28px;display:flex;align-items:center;justify-content:center;color:var(--acc);font-size:24px;font-weight:700}
+.flow .n{width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.flow h2{font-size:16px}.flow p{font-size:14px}
+.big-q{font-family:"Inter Display";font-size:30px;font-weight:700;line-height:1.3;color:var(--ink);max-width:980px}
+.big-q em{font-style:normal;color:var(--acc)}
+</style></head><body>
+
+<!-- 1 PORTADA -->
+<section class="s cover">
+  <svg style="position:absolute;right:70px;top:110px" width="470" height="470" viewBox="0 0 470 470">
+    <g fill="none" stroke-width="3">
+      <rect x="40" y="200" width="170" height="170" stroke="#d9682b" fill="#d9682b22"/>
+      <rect x="210" y="200" width="170" height="170" stroke="#ffffff88" stroke-dasharray="10 8"/>
+      <rect x="210" y="30" width="170" height="170" stroke="#ffffff55" stroke-dasharray="10 8"/>
+      <rect x="380" y="200" width="70" height="170" stroke="#ffffff33" stroke-dasharray="10 8"/>
+    </g>
+    <text x="125" y="292" fill="#fff" font-family="Inter" font-size="17" font-weight="700" text-anchor="middle">Módulo base</text>
+    <text x="295" y="292" fill="#ffffffaa" font-family="Inter" font-size="15" text-anchor="middle">+ ampliación</text>
+    <text x="295" y="122" fill="#ffffff88" font-family="Inter" font-size="15" text-anchor="middle">+ ampliación</text>
+    <line x1="20" y1="372" x2="460" y2="372" stroke="#ffffff55" stroke-width="2"/>
+  </svg>
+  <div class="l">
+    <span class="tag">Proyecto de Tesis · Ingeniería Industrial · UNCuyo</span>
+    <h1>Square Housing</h1>
+    <p>Planta de fabricación de viviendas modulares industrializadas, construidas en seco y ampliables, en Mendoza.</p>
+  </div>
+  <div class="meta"><b>Grupo 11</b> — Marsonet, Santiago · Royo, Santiago · Gimenez, Lisandro · Bordon, Joaquín<br>Técnicas y Herramientas Modernas II · Módulo 2 · Segundo semestre 2026</div>
+</section>
+
+<!-- 2 PROBLEMA -->
+<section class="s">
+  <span class="tag">El problema</span>
+  <h1>Acceder a la primera vivienda es cada vez más difícil</h1>
+  <p class="lead">Los jóvenes adultos de 25 a 40 años quieren tener su casa, pero se encuentran con tres barreras que la construcción tradicional no resuelve.</p>
+  <div class="grid g3">
+    <div class="card acc"><h2>Barrera económica</h2><p>La inversión inicial es alta y el ahorro es muy difícil. El financiamiento para construir es escaso y exigente.</p></div>
+    <div class="card acc"><h2>Falta de previsibilidad</h2><p>Una vivienda unifamiliar tradicional demora de <b>18 a 30 meses</b>, con presupuestos abiertos y sobrecostos.</p></div>
+    <div class="card acc"><h2>Estrés de la obra</h2><p>El propietario termina coordinando gremios y tomando decisiones técnicas que no le corresponden.</p></div>
+  </div>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>2</span></div>
+</section>
+
+<!-- 3 DATOS -->
+<section class="s">
+  <span class="tag">Contexto</span>
+  <h1>Una demanda insatisfecha y una ventana que se abre</h1>
+  <p class="lead">El déficit habitacional es alto, pero la estabilización macroeconómica volvió a traer el crédito hipotecario.</p>
+  <div class="grid g4">
+    <div class="card"><div class="num">+100<small> mil</small></div><div class="k">personas con déficit habitacional en Mendoza</div><div class="src">Fuente periodística relevada</div></div>
+    <div class="card"><div class="num">31,5<small>%</small></div><div class="k">inflación anual 2025, desde 117,8 % en 2024</div><div class="src">INDEC</div></div>
+    <div class="card"><div class="num">43,7<small> mil</small></div><div class="k">nuevos deudores hipotecarios en 2025</div><div class="src">BCRA</div></div>
+    <div class="card"><div class="num">30,6<small>%</small></div><div class="k">de obras sin permiso respecto de la superficie autorizada</div><div class="src">DEIE, ago. 2026 · riesgo sísmico</div></div>
+  </div>
+  <div class="card" style="margin-top:22px;background:var(--soft);border-color:#f0d2bd"><p style="color:#7a3a17"><b>Encuesta propia:</b> el 100 % de los encuestados de 25 a 40 años sin vivienda elegiría comprar o construir, pero no puede por el precio, la falta de financiamiento y la inestabilidad económica.</p></div>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>3</span></div>
+</section>
+
+<!-- 4 PROPUESTA -->
+<section class="s">
+  <span class="tag">La propuesta</span>
+  <h1>Una casa que empieza chica y crece con la familia</h1>
+  <p class="lead">Vivienda fabricada en planta, con precio cerrado desde el contrato y plazos previsibles.</p>
+  <div class="grid g3">
+    <div class="card acc"><span class="pill">1 · Base</span><h2>Módulo inicial</h2><p>Cocina-estar, dormitorio y baño. Con el futuro Código Unificado de Edificación, al menos 32 m².</p></div>
+    <div class="card acc"><span class="pill">2 · Crecer</span><h2>Ampliaciones</h2><p>Módulos adicionales que se suman cuando cambian las necesidades del hogar, sin volver a empezar una obra.</p></div>
+    <div class="card acc"><span class="pill">3 · Mejorar</span><h2>Upgrades</h2><p>Eficiencia térmica, climatización, preparación para paneles solares, domótica, seguridad y home office.</p></div>
+  </div>
+  <p style="margin-top:26px;font-size:18px"><b style="color:var(--ink)">Para el cliente:</b> menor inversión inicial y certeza de precio y plazo. <b style="color:var(--ink)">Para la empresa:</b> ingresos posteriores a la venta y una rotación de capital más rápida.</p>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>4</span></div>
+</section>
+
+<!-- 5 MERCADO -->
+<section class="s">
+  <span class="tag">Mercado</span>
+  <h1>Clientes claros y un hueco en la competencia</h1>
+  <div class="grid g2" style="margin-top:24px">
+    <div class="card"><h2>Perfiles de cliente</h2>
+      <ul><li><b style="color:var(--ink)">Inquilinos de 30 a 40 años</b>, ingresos medios o altos, sin hijos o con hijos pequeños.</li>
+      <li><b style="color:var(--ink)">Adultos que ya construyeron</b> y no quieren repetir la experiencia de obra.</li>
+      <li><b style="color:var(--ink)">Personas de 30 a 40 años sin capital</b>, que dependen del crédito personal o hipotecario.</li></ul>
+      <p style="margin-top:10px;font-size:15px">Segmentos secundarios: turismo y alquiler temporario, inversores y, como plan B, minería.</p>
+    </div>
+    <div class="card"><h2>Competencia</h2>
+      <p>IMESCO, Viviendas Guaymallén, Ecolodge, Factory Xpace, Idero, Husly, Estilo Modular y Grupo Patagonia. Referentes: Lucy's House y empresas de CACMI.</p>
+      <p style="margin-top:12px">Ofrecen viviendas <b style="color:var(--ink)">terminadas y estáticas</b> o apuntan al <b style="color:var(--ink)">turismo de alta gama</b>.</p>
+      <div style="margin-top:16px;padding:14px 16px;border-radius:10px;background:var(--soft);color:#7a3a17;font-size:16px;font-weight:600">Hueco detectado: vivienda familiar de clase media, flexible y ampliable.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>5</span></div>
+</section>
+
+<!-- 6 SISTEMA CONSTRUCTIVO -->
+<section class="s">
+  <span class="tag">Ingeniería · Sistema constructivo</span>
+  <h1>Steel frame: liviano, sismorresistente y sin CAT</h1>
+  <p class="lead" style="margin-bottom:20px">El steel frame es "sistema tradicional" por la Res. 5-E/2018. Calculado con CIRSOC 303 e INPRES-CIRSOC 103, no requiere Certificado de Aptitud Técnica. Se evalúa también un híbrido con paneles SIP.</p>
+  <table>
+    <tr><th style="width:30%">Alternativa evaluada</th><th style="width:16%">Estado</th><th>Motivo</th></tr>
+    <tr><td><b>Steel frame / híbrido SIP</b></td><td><span class="pill ok">Elegido</span></td><td class="m">Liviano para transportar, apto zona sísmica 4, cadena de proveedores disponible.</td></tr>
+    <tr><td>Wood frame</td><td><span class="pill no">Descartado</span></td><td class="m">Buen puntaje, pero percepción negativa en Mendoza y proveedores débiles.</td></tr>
+    <tr><td>Paneles de hormigón con EPS</td><td><span class="pill no">Descartado</span></td><td class="m">Demasiado pesados para trasladar la casa armada.</td></tr>
+    <tr><td>Panel sándwich importado / contenedor</td><td><span class="pill no">Descartado</span></td><td class="m">Peores puntajes en la matriz de decisión ponderada.</td></tr>
+    <tr><td>UMA (CEVE-CONICET) / sistema propio</td><td><span class="pill no">Descartado</span></td><td class="m">Desactualizado o con exigencia de CAT y CAS, inviable en los plazos del PFE.</td></tr>
+  </table>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>6</span></div>
+</section>
+
+<!-- 7 PROCESO -->
+<section class="s">
+  <span class="tag">Ingeniería · Proceso productivo</span>
+  <h1>De la planta al lote</h1>
+  <p class="lead">La fabricación en ambiente controlado reduce las demoras, el desperdicio, el ausentismo y el impacto del clima que afectan a la obra tradicional.</p>
+  <div class="flow">
+    <div class="st"><div class="n">1</div><h2>Diseño</h2><p>Modelado BIM del módulo y sus variantes.</p></div><div class="ar">›</div>
+    <div class="st"><div class="n">2</div><h2>Recepción</h2><p>Perfiles galvanizados, placas, aislantes e insumos.</p></div><div class="ar">›</div>
+    <div class="st"><div class="n">3</div><h2>Estructura</h2><p>Armado de paneles y bastidores en steel frame.</p></div><div class="ar">›</div>
+    <div class="st"><div class="n">4</div><h2>Instalaciones</h2><p>Aislación, sanitarias, eléctricas y aberturas.</p></div><div class="ar">›</div>
+    <div class="st"><div class="n">5</div><h2>Inspección</h2><p>Terminaciones y control de calidad en planta.</p></div><div class="ar">›</div>
+    <div class="st" style="border-color:var(--acc)"><div class="n" style="background:var(--acc)">6</div><h2>Montaje</h2><p>Transporte, fundación y conexión a servicios.</p></div>
+  </div>
+  <div class="card" style="margin-top:24px"><p><b style="color:var(--ink)">Protocolo de fabricación e inspección en planta</b>, inspirado en esquemas de EE. UU. y Chile, para que el municipio pueda verificar la obra durante la fabricación y facilitar su aprobación.</p></div>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>7</span></div>
+</section>
+
+<!-- 8 ENTREGA -->
+<section class="s">
+  <span class="tag">Ingeniería · Esquema de entrega</span>
+  <h1>¿Armada en planta o montada en el lote?</h1>
+  <p class="lead">Es una decisión abierta: hay que equilibrar el ideal industrial con la aprobación municipal y el transporte.</p>
+  <div class="grid g3">
+    <div class="card"><span class="pill go">Ideal</span><h2>Volumétrica</h2><p>Casa armada en planta y trasladada completa. Máximo control de calidad y plazo, pero con aprobación municipal difícil.</p></div>
+    <div class="card acc"><span class="pill">En evaluación</span><h2>Híbrida</h2><p>Núcleo húmedo (cocina y baño) armado en planta y paneles montados en el lote. Equilibra control y aprobación.</p></div>
+    <div class="card"><span class="pill no">Alternativa</span><h2>Desarmada</h2><p>Paneles prefabricados que se ensamblan en el lote. Más simple de aprobar y transportar, pero con menos ventaja industrial.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:22px">
+    <div class="card"><div class="num" style="font-size:40px">2,60<small> m</small></div><div class="k">ancho máximo sin permiso especial de transporte</div></div>
+    <div class="card"><div class="num" style="font-size:40px">4,30<small> m</small></div><div class="k">alto máximo sin permiso especial de transporte</div></div>
+  </div>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>8</span></div>
+</section>
+
+<!-- 9 RIESGOS -->
+<section class="s">
+  <span class="tag">Riesgos</span>
+  <h1>Los riesgos son conocidos y forman parte del estudio</h1>
+  <table style="margin-top:18px">
+    <tr><th style="width:32%">Riesgo</th><th style="width:12%">Nivel</th><th>Respuesta prevista</th></tr>
+    <tr><td><b>Aprobación municipal</b> de módulos armados en planta</td><td><span class="pill">Alto</span></td><td class="m">Esquema híbrido o desarmado; protocolo de inspección en planta.</td></tr>
+    <tr><td><b>Acceso al crédito hipotecario</b> del cliente</td><td><span class="pill">Alto</span></td><td class="m">Steel frame como sistema tradicional (sin CAT); vivienda fija e hipotecable.</td></tr>
+    <tr><td>Resistencia cultural a la construcción en seco</td><td><span class="pill go">Medio</span></td><td class="m">Casas de exhibición, garantías y comunicación de prestaciones.</td></tr>
+    <tr><td>Costos fijos y precio del acero (±15–20 %)</td><td><span class="pill go">Medio</span></td><td class="m">Análisis de sensibilidad; tamaño de planta escalonado.</td></tr>
+    <tr><td>Competencia de módulos importados</td><td><span class="pill go">Medio</span></td><td class="m">Diferenciación por ampliaciones, upgrades y servicio local.</td></tr>
+  </table>
+  <p style="margin-top:16px;font-size:15px"><b style="color:var(--ink)">Plan B:</b> módulos para el sector minero (proyecto PSJ Cobre Mendocino), donde no se requiere crédito ni aprobación municipal de vivienda.</p>
+  <div class="foot"><span>Square Housing · Grupo 11</span><span>9</span></div>
+</section>
+
+<!-- 10 HOJA DE RUTA -->
+<section class="s">
+  <span class="tag">Hoja de ruta e impacto</span>
+  <h1>Un proyecto de triple impacto</h1>
+  <div class="grid g3" style="margin-top:20px">
+    <div class="card"><span class="pill ok">Hecho</span><h2>1 · Comercialización</h2><p>Círculo Dorado, PESTEL, Canvas, competidores, encuestas y entrevistas a expertos.</p></div>
+    <div class="card acc"><span class="pill">En curso</span><h2>2 · Ingeniería</h2><p>Sistema constructivo, proceso, layout, calidad, tamaño y localización.</p></div>
+    <div class="card"><span class="pill no">Pendiente</span><h2>3 · Económico-financiera</h2><p>Inversiones, costos, VAN, TIR, punto de equilibrio y sensibilidad.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:22px">
+    <div><h2>Económico</h2><p>Vivienda con menor inversión inicial y precio cerrado; valor agregado industrial local.</p></div>
+    <div><h2>Social</h2><p>Acceso a la casa propia para jóvenes adultos que hoy postergan la decisión.</p></div>
+    <div><h2>Ambiental</h2><p>Menos residuos de obra, mejor aislación y estructura reutilizable.</p></div>
+  </div>
+  <div class="foot"><span>Facultad de Ingeniería — UNCuyo · Técnicas y Herramientas Modernas II</span><span>10</span></div>
+</section>
+
+</body></html>

@@ -26,7 +26,7 @@ Los parámetros son `A = 0,25` (velocidad de corrección) y `B = 0,33` (peso que
 - **Jugando con los parámetros:** se movió un parámetro por vez (`A`, `B`, `SMOOTHTIME` y la forma de la demanda). Hasta un pulso de demanda de una sola semana hace oscilar la cadena. Una regla "mejorada" (`A = 0,5`, `B = 1`) baja el costo a **$498**, un 78 % menos que la regla base.
 
 ### Diagrama del modelo
-![Diagrama de stocks y flujos del Beer Game](Modulo5_Beer_Game/img/diagrama_vista1.png)
+![Modelo del Beer Game en Vensim (SyntheSim)](Modulo5_Beer_Game/img/captura_vensim_synthesim.png)
 
 ### Informe
 👉 **[Ver el informe en el navegador](https://santiagomarsonet.github.io/TyHM2-Entregas/Modulo%205/Modulo5_Beer_Game/Informe_Beer_Game.html)**
@@ -39,7 +39,7 @@ Los parámetros son `A = 0,25` (velocidad de corrección) y `B = 0,33` (peso que
 | [`Modulo5_Beer_Game/Informe_Beer_Game.Rmd`](Modulo5_Beer_Game/Informe_Beer_Game.Rmd) | Código fuente del informe en R Markdown |
 | [`Modulo5_Beer_Game/Beer_Game.mdl`](Modulo5_Beer_Game/Beer_Game.mdl) | Modelo de Vensim |
 | [`Modulo5_Beer_Game/resultados_vensim_mdl.csv`](Modulo5_Beer_Game/resultados_vensim_mdl.csv) | Resultados de la corrida del modelo, usados en la validación del informe |
-| [`Modulo5_Beer_Game/img/`](Modulo5_Beer_Game/img) | Diagramas de las dos vistas del modelo de Vensim, usados en el informe |
+| [`Modulo5_Beer_Game/img/`](Modulo5_Beer_Game/img) | Captura del modelo en Vensim (SyntheSim) y diagrama de la vista 2, usados en el informe |
 
 **Para regenerar el informe:** abrir `Informe_Beer_Game.Rmd` en RStudio o Posit Cloud, con el `.csv` y la carpeta `img/` en la misma carpeta, y apretar **Knit**. Requiere los paquetes `rmarkdown`, `knitr` y `ggplot2`.
 

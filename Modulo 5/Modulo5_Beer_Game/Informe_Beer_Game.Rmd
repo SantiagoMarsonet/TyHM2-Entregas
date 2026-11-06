@@ -150,10 +150,12 @@ Además, el stock `Cost` acumula el costo de toda la cadena.
 
 ## Diagrama del modelo
 
-El modelo tiene dos vistas. La **vista 1** es la cadena completa: los cuatro eslabones uno al lado del otro, cada uno con sus tres stocks y los flujos que los conectan. Las variables entre `< >` y en gris son *shadow variables*, es decir, copias de un parámetro definido en otro lugar del diagrama. Las flechas con dos rayitas (‖) marcan una **demora**: el pedido que hace un eslabón (`placed`) le llega al de arriba como `ordered` una semana después.
+El modelo tiene dos vistas. La **vista 1** es la cadena completa: los cuatro eslabones uno al lado del otro, cada uno con sus tres stocks y los flujos que los conectan. Las variables entre `< >` y en gris son *shadow variables*, es decir, copias de un parámetro definido en otro lugar del diagrama. Las flechas negras gruesas que van de `ordered` al `placed` del eslabón siguiente marcan una **demora**: el pedido que hace un eslabón (`placed`) le llega al de arriba como `ordered` una semana después.
 
-```{r diagrama1, echo=FALSE, out.width="100%", fig.cap="Vista 1 del modelo en Vensim: diagrama de stocks y flujos de los cuatro eslabones."}
-knitr::include_graphics("img/diagrama_vista1.png")
+La captura es de Vensim con **SyntheSim** activado. Los mini-gráficos azules sobre cada variable muestran cómo evoluciona en las 36 semanas de la simulación base. Así se ve la forma de cada curva sin salir del diagrama: los `Backlog` tienen un pico y después vuelven a cero, y los `Inventory` primero bajan y después suben por encima del valor inicial. Cada mini-gráfico tiene su propia escala, por eso los tamaños se comparan en los gráficos de la sección de resultados.
+
+```{r diagrama1, echo=FALSE, out.width="100%", fig.cap="Vista 1 del modelo en Vensim (captura con SyntheSim): diagrama de stocks y flujos de los cuatro eslabones, con el comportamiento de cada variable."}
+knitr::include_graphics("img/captura_vensim_synthesim.png")
 ```
 
 Se lee de izquierda a derecha. La demanda (`ORDer`) entra por el minorista y saca cerveza de su `Inventory` a través de `sold`. Si no alcanza, lo que falta se acumula en `Backlog`. Con esa información, el eslabón decide `placed` (cuánto pedir), que suma a su `SupplyL` y viaja como `ordered` al eslabón siguiente. La cerveza vuelve en sentido contrario: lo que despacha un eslabón (`sold 0`, `sold 1`, …) llega como `in` al de abajo dos semanas después. La fábrica no tiene proveedor: produce lo que pidió (`coming`).

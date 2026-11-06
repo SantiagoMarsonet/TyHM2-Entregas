@@ -39,8 +39,18 @@ Se propone el **corredor Rodríguez Peña – General Ortega** para la macroloca
 | `datos/ranking_parques.csv` | Indicadores y ranking de los 18 parques |
 | `mapas/` | Mapas en PNG |
 | `scripts/` | Código Python del análisis (GeoPandas, Shapely, Rasterio, Folium) |
+| `Analisis_artistico_Patio_de_los_Arrayanes_La_Alhambra.pdf` | Complemento: análisis artístico de una fotografía (ver abajo) |
 
 **Para abrir en QGIS:** arrastrar el `.gpkg` a QGIS. Aparecen las capas `parques_industriales`, `poligonos_industriales`, `voronoi`, `delaunay`, `demanda_cabeceras`, `centro_gravedad` y `area_estudio`.
+
+### Complemento: análisis artístico de una fotografía
+📄 **[Análisis artístico – Patio de los Arrayanes, La Alhambra](Analisis_artistico_Patio_de_los_Arrayanes_La_Alhambra.pdf)**
+
+Análisis de una fotografía del Patio de los Arrayanes, en el Palacio de Comares de la Alhambra (Granada). Incluye:
+- **Descripción de la imagen:** estanque, fuente, cercos de arrayanes, galería de siete arcos y Torre de Comares.
+- **Análisis formal:** simetría, composición centrada, perspectiva, planos de profundidad, luz, color, formas y texturas.
+- **La cultura musulmana en el patio:** el patio como centro, el agua como imagen del paraíso, la naturaleza ordenada, la decoración geométrica sin figuras, la liviandad de arcos y columnas, y la torre como símbolo de poder.
+- **Interpretación y conclusión:** la sensación de calma, orden y permanencia, y por qué se eligió esta foto como ejemplo de la arquitectura nazarí.
 
 ## Integrantes – Grupo 11
 | Apellido y nombre | Legajo |

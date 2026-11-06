@@ -24,14 +24,17 @@ Los parámetros son `A = 0,25` (velocidad de corrección) y `B = 0,33` (peso que
 - El **costo total** de la cadena en 36 semanas es de **$2.250**, y el distribuidor y la fábrica generan la mayor parte.
 - **Análisis de sensibilidad:** si los jugadores tienen en cuenta todo lo que ya pidieron (`B = 1`), las oscilaciones casi desaparecen y el costo baja a unos **$580**. La causa del problema es la regla de decisión, no la demanda.
 
+### Informe
+👉 **[Ver el informe en el navegador](https://santiagomarsonet.github.io/TyHM2-Entregas/Modulo%205/Modulo5_Beer_Game/Informe_Beer_Game.html)**
+
 ### Contenido de la carpeta
 | Archivo | Descripción |
 |---|---|
-| `Modulo5_Beer_Game.zip` | Entrega completa (contiene los archivos de abajo) |
-| ↳ `Informe_Beer_Game.html` | Informe final. Se abre con cualquier navegador |
-| ↳ `Informe_Beer_Game.Rmd` | Código fuente del informe en R Markdown |
-| ↳ `Beer_Game.mdl` | Modelo de Vensim |
-| ↳ `resultados_vensim_mdl.csv` | Resultados de la corrida del modelo, usados en la validación del informe |
+| `Modulo5_Beer_Game.zip` | Entrega completa en un solo archivo (contiene lo mismo que la carpeta `Modulo5_Beer_Game/`) |
+| [`Modulo5_Beer_Game/Informe_Beer_Game.html`](Modulo5_Beer_Game/Informe_Beer_Game.html) | Informe final. Se abre con cualquier navegador |
+| [`Modulo5_Beer_Game/Informe_Beer_Game.Rmd`](Modulo5_Beer_Game/Informe_Beer_Game.Rmd) | Código fuente del informe en R Markdown |
+| [`Modulo5_Beer_Game/Beer_Game.mdl`](Modulo5_Beer_Game/Beer_Game.mdl) | Modelo de Vensim |
+| [`Modulo5_Beer_Game/resultados_vensim_mdl.csv`](Modulo5_Beer_Game/resultados_vensim_mdl.csv) | Resultados de la corrida del modelo, usados en la validación del informe |
 
 **Para regenerar el informe:** abrir `Informe_Beer_Game.Rmd` en RStudio o Posit Cloud, con el `.csv` en la misma carpeta, y apretar **Knit**. Requiere los paquetes `rmarkdown`, `knitr` y `ggplot2`.
 

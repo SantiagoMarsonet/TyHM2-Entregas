@@ -148,6 +148,22 @@ El **efecto látigo** es la **amplificación de la variabilidad de los pedidos a
 
 Además, el stock `Cost` acumula el costo de toda la cadena.
 
+## Diagrama del modelo
+
+El modelo tiene dos vistas. La **vista 1** es la cadena completa: los cuatro eslabones uno al lado del otro, cada uno con sus tres stocks y los flujos que los conectan. Las variables entre `< >` y en gris son *shadow variables*, es decir, copias de un parámetro definido en otro lugar del diagrama. Las flechas con dos rayitas (‖) marcan una **demora**: el pedido que hace un eslabón (`placed`) le llega al de arriba como `ordered` una semana después.
+
+```{r diagrama1, echo=FALSE, out.width="100%", fig.cap="Vista 1 del modelo en Vensim: diagrama de stocks y flujos de los cuatro eslabones."}
+knitr::include_graphics("img/diagrama_vista1.png")
+```
+
+Se lee de izquierda a derecha. La demanda (`ORDer`) entra por el minorista y saca cerveza de su `Inventory` a través de `sold`. Si no alcanza, lo que falta se acumula en `Backlog`. Con esa información, el eslabón decide `placed` (cuánto pedir), que suma a su `SupplyL` y viaja como `ordered` al eslabón siguiente. La cerveza vuelve en sentido contrario: lo que despacha un eslabón (`sold 0`, `sold 1`, …) llega como `in` al de abajo dos semanas después. La fábrica no tiene proveedor: produce lo que pidió (`coming`).
+
+```{r diagrama2, echo=FALSE, out.width="80%", fig.cap="Vista 2 del modelo: inventario efectivo de cada eslabón y acumulación del costo total."}
+knitr::include_graphics("img/diagrama_vista2.png")
+```
+
+La **vista 2** tiene las variables auxiliares que se usan para mirar los resultados: el inventario efectivo de cada eslabón (`Eff Env`, `Eff Inv 0`, `Eff Inv 1` y `Eff Inv 2`) y el stock `Cost`. `Cost` crece cada semana con `cost increase`, que suma \$1 por cada caja en backlog y \$0,50 por cada caja en inventario de los cuatro eslabones.
+
 ## Ecuaciones principales
 
 **Demanda del consumidor** (escalón de 4 a 8 en la semana 5):
@@ -395,6 +411,145 @@ peor  <- esc[which.max(esc$`Costo total`), ]
 - El mejor escenario de la tabla es A = `r mejor$A` y B = `r mejor$B`, con un costo de \$`r format(mejor[["Costo total"]], big.mark = ".", decimal.mark = ",")`. El peor es A = `r peor$A` y B = `r peor$B`, con \$`r format(peor[["Costo total"]], big.mark = ".", decimal.mark = ",")`.
 
 Esto confirma la conclusión de Sterman: el problema no es la demanda sino la **regla de decisión**, en particular no tener en cuenta los pedidos en tránsito.
+
+# Jugando con los parámetros
+
+Además de la tabla anterior, probamos qué pasa al mover **un parámetro por vez** y dejar el resto en el valor base (`A = 0,25`, `B = 0,33`, `SMOOTHTIME = 1`, escalón de 4 a 8). Es lo mismo que mover los deslizadores de un parámetro en Vensim y ver cómo cambian las curvas. En cada prueba se mira la **fábrica**, que es donde el efecto látigo se nota más: sus pedidos y su inventario efectivo.
+
+```{r exp_funciones}
+# Corre varios escenarios y arma una tabla larga con los resultados de la fábrica
+correr <- function(escenarios) {
+  do.call(rbind, lapply(names(escenarios), function(nom) {
+    s <- do.call(beer_game, escenarios[[nom]])
+    d <- subset(s$series, eslabon == "Fábrica" &
+                  variable %in% c("Pedidos realizados", "Inventario efectivo"))
+    d$escenario <- nom
+    d
+  }))
+}
+resumen <- function(escenarios, experimento) {
+  do.call(rbind, lapply(names(escenarios), function(nom) {
+    s  <- do.call(beer_game, escenarios[[nom]])
+    pf <- with(s$series, valor[variable == "Pedidos realizados"  & eslabon == "Fábrica"])
+    ie <- with(s$series, valor[variable == "Inventario efectivo" & eslabon == "Fábrica"])
+    data.frame(Experimento = experimento, Escenario = nom,
+               `Costo total ($)` = round(tail(s$costo$Cost, 1)),
+               `Pedido máx. fábrica` = round(max(pf), 1),
+               `Faltante máx. fábrica` = round(-min(ie)),
+               `Sobrestock máx. fábrica` = round(max(ie)),
+               check.names = FALSE)
+  }))
+}
+graf_exp <- function(escenarios, titulo, paleta) {
+  d <- correr(escenarios)
+  d$escenario <- factor(d$escenario, names(escenarios))
+  d$variable  <- factor(d$variable, c("Pedidos realizados", "Inventario efectivo"),
+                        c("Pedidos de la fábrica (cajas/semana)", "Inventario efectivo de la fábrica (cajas)"))
+  ggplot(d, aes(semana, valor, colour = escenario)) +
+    geom_hline(yintercept = 0, colour = "grey70") +
+    geom_line(linewidth = 0.9) +
+    facet_wrap(~variable, scales = "free_y") +
+    scale_colour_manual(values = paleta) +
+    labs(title = titulo, x = "Semana", y = NULL, colour = NULL) +
+    theme_minimal(base_size = 12) + theme(legend.position = "top")
+}
+pal4 <- c("#1f77b4", "#2ca02c", "#ff7f0e", "#d62728", "#9467bd")
+```
+
+## Prueba 1: velocidad de corrección (`A`)
+
+`A` dice qué parte de la brecha de inventario corrige el jugador cada semana. Con `A = 0` no corrige nada y pide solo lo que espera vender. Con `A = 1` intenta cerrar toda la brecha en una semana.
+
+```{r exp_A, fig.height=4.2}
+escA <- list("A = 0" = list(A = 0), "A = 0,1" = list(A = 0.1), "A = 0,25 (base)" = list(A = 0.25),
+             "A = 0,5" = list(A = 0.5), "A = 1" = list(A = 1))
+tA <- resumen(escA, "A")
+graf_exp(escA, "Prueba 1: cambiando A (B = 0,33)", pal4)
+```
+
+- Cuanto más alta es `A`, más violenta es la reacción. Con `A = 1` la fábrica llega a pedir `r tA[5, 4]` cajas por semana y el costo sube a \$`r format(tA[5, 3], big.mark = ".")`, casi el triple del caso base.
+- Con `A = 0` las curvas quedan planas y el costo es bajo (\$`r format(tA[1, 3], big.mark = ".")`), pero hay trampa: como nadie corrige, el faltante que se genera en el escalón **no se recupera nunca** y la cadena queda trabajando con backlog para siempre.
+- Lo que se busca es un punto medio: corregir, pero sin sobrerreaccionar.
+
+## Prueba 2: atención a la línea de suministro (`B`)
+
+`B` dice cuánto tiene en cuenta el jugador lo que ya pidió y todavía no le llegó.
+
+```{r exp_B, fig.height=4.2}
+escB <- list("B = 0" = list(B = 0), "B = 0,33 (base)" = list(B = 0.33),
+             "B = 0,66" = list(B = 0.66), "B = 1" = list(B = 1))
+tB <- resumen(escB, "B")
+graf_exp(escB, "Prueba 2: cambiando B (A = 0,25)", pal4)
+```
+
+- Es el parámetro que más cambia el resultado. Con `B = 0` (el jugador se olvida de lo que ya pidió) la fábrica termina con unas `r tB[1, 6]` cajas de sobrestock y el costo llega a \$`r format(tB[1, 3], big.mark = ".")`.
+- Con `B = 1` el inventario efectivo de la fábrica nunca pasa de 12 cajas, así que no hay sobrestock: solo aparece el faltante inicial y después se corrige sin rebotar. El costo baja a \$`r format(tB[4, 3], big.mark = ".")`.
+- Pasar de `B = 0,33` a `B = 0,66` ya reduce el costo a menos de la mitad.
+
+## Prueba 3: suavizado del pronóstico (`SMOOTHTIME`)
+
+`SMOOTHTIME` es cuántas semanas tarda el jugador en "creerse" que la demanda cambió. Con 1 semana reacciona enseguida. Con 8 semanas sigue pensando un buen tiempo que la demanda es 4.
+
+```{r exp_ST, fig.height=4.2}
+escST <- list("SMOOTHTIME = 1 (base)" = list(SMOOTHTIME = 1), "SMOOTHTIME = 2" = list(SMOOTHTIME = 2),
+              "SMOOTHTIME = 4" = list(SMOOTHTIME = 4), "SMOOTHTIME = 8" = list(SMOOTHTIME = 8))
+tST <- resumen(escST, "SMOOTHTIME")
+graf_exp(escST, "Prueba 3: cambiando SMOOTHTIME (A = 0,25; B = 0,33)", pal4)
+```
+
+- Suavizar más el pronóstico **no ayuda** con la regla base: el costo sube de \$`r format(tST[1, 3], big.mark = ".")` a \$`r format(tST[4, 3], big.mark = ".")`. Como el ancla tarda en subir, al principio el jugador pide de menos, se acumula más backlog y después la corrección vía `A` es más grande.
+- Con `SMOOTHTIME` alto las oscilaciones también se estiran: el pico de sobrestock llega más tarde y con 8 semanas todavía no terminó de formarse al final de la simulación.
+
+## Prueba 4: otra forma de demanda
+
+Acá no se toca la regla de decisión sino lo que hace el consumidor. Se compara el escalón base con un escalón más chico (de 4 a 6), con un **pulso** (la demanda sube a 8 una sola semana y vuelve a 4) y con una suba que dura 5 semanas.
+
+```{r exp_dem, fig.height=4.2}
+escD <- list("Escalón 4 → 8 (base)" = list(),
+             "Escalón 4 → 6" = list(demanda = function(t) 4 + ifelse(t >= 5, 2, 0)),
+             "Pulso: 8 solo en la semana 5" = list(demanda = function(t) 4 + ifelse(t == 5, 4, 0)),
+             "8 durante 5 semanas" = list(demanda = function(t) 4 + ifelse(t >= 5 & t < 10, 4, 0)))
+tD <- resumen(escD, "Demanda")
+graf_exp(escD, "Prueba 4: cambiando la demanda (A = 0,25; B = 0,33)", pal4)
+```
+
+- Lo más llamativo es el **pulso**: el consumidor compra 4 cajas de más **una sola vez**, y aun así la fábrica llega a pedir `r tD[3, 4]` cajas en una semana y llega a tener unas `r tD[3, 6]` cajas de sobrestock. Además, la cadena sigue oscilando hasta el final de la simulación.
+- Cuando la suba dura 5 semanas y después se termina, la fábrica queda casi igual de expuesta que con el escalón permanente, porque los pedidos que hizo en la suba le siguen llegando cuando la demanda ya bajó.
+- Un cambio chico y pasajero en la demanda alcanza para desordenar toda la cadena. Por eso las empresas reales sufren el efecto látigo aunque su demanda final sea bastante estable.
+
+## Prueba 5: combinando lo aprendido
+
+Con lo que vimos, armamos una regla "mejorada": **tener en cuenta todo lo que ya se pidió (`B = 1`)** y, como ya no se pide dos veces lo mismo, corregir la brecha más rápido (**`A = 0,5`**). Se compara con la regla base en los cuatro eslabones.
+
+```{r exp_comb, fig.height=6}
+mej <- beer_game(A = 0.5, B = 1)
+comb <- rbind(transform(subset(base$series, variable %in% c("Pedidos realizados", "Inventario efectivo")),
+                        regla = "Base (A = 0,25; B = 0,33)"),
+              transform(subset(mej$series,  variable %in% c("Pedidos realizados", "Inventario efectivo")),
+                        regla = "Mejorada (A = 0,5; B = 1)"))
+comb$variable <- factor(comb$variable, c("Pedidos realizados", "Inventario efectivo"))
+tC <- resumen(list("Mejorada (A = 0,5; B = 1)" = list(A = 0.5, B = 1)), "Combinada")
+ggplot(comb, aes(semana, valor, colour = regla)) +
+  geom_hline(yintercept = 0, colour = "grey70") +
+  geom_line(linewidth = 0.9) +
+  facet_grid(variable ~ eslabon, scales = "free_y") +
+  scale_colour_manual(values = c("#d62728", "#1f77b4")) +
+  labs(title = "Regla base vs. regla mejorada en toda la cadena", x = "Semana", y = NULL, colour = NULL) +
+  theme_minimal(base_size = 11) + theme(legend.position = "top")
+```
+
+Con la regla mejorada el costo total baja de \$`r format(round(tail(base$costo$Cost, 1)), big.mark = ".")` a \$`r format(tC[1, 3], big.mark = ".")` (`r round(100 * (1 - tC[1, 3] / tail(base$costo$Cost, 1)))` % menos). Cada eslabón tiene un solo pico de pedido cuando le llega el cambio (la fábrica llega a `r round(max(with(mej$series, valor[variable == "Pedidos realizados" & eslabon == "Fábrica"])), 1)` cajas una semana), pero enseguida se acomoda en 8 cajas por semana y **no vuelve a oscilar**. Ningún eslabón acumula sobrestock. Sigue habiendo un faltante al principio, que es inevitable porque la cerveza tarda en llegar.
+
+Un detalle del modelo: con esta regla el inventario efectivo se estabiliza cerca de **0** y no vuelve a 12. Pasa porque la línea de suministro deseada no cambia cuando sube la demanda. Al pedir 8 por semana hay más cajas en camino que antes, y la regla las cuenta como si ya fueran stock. Para que el inventario vuelva a 12 habría que agregar al modelo una línea de suministro deseada que crezca con la demanda, como propone Sterman.
+
+## Resumen de todas las pruebas
+
+```{r exp_tabla}
+kable(rbind(tA, tB, tST, tD, tC), caption = "Resultados de cada prueba (36 semanas)",
+      format.args = list(decimal.mark = ",", big.mark = "."))
+```
+
+**Lo que nos dejó jugar con el modelo:** las palancas que más pesan son las que están en la cabeza del jugador (`A` y, sobre todo, `B`), no la demanda. Una misma cadena, con las mismas demoras y la misma demanda, puede costar `r round(max(tA[,3], tB[,3]) / tC[1, 3])` veces más o menos según la regla con la que se decida cuánto pedir.
 
 # Conclusiones
 
